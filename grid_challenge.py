@@ -6,6 +6,9 @@ def join(row):
 
 
 def bomberPlane(n, grid):
+    if n < 2:
+        return grid  # nothing changes in grid until after 2 seconds
+
     r = len(grid)  # number of rows in grid. 6 in our example
     c = len(grid[0])  # number of characters rather than length of list. 7 in our example
     # print(r, c)
@@ -18,6 +21,3 @@ def bomberPlane(n, grid):
         modifiedList = list(map(join, zeros_grid))
         print(modifiedList)
         return modifiedList
-        # for row in zeros_grid:
-        #     zeros_grid_of_strings.append("".join(sublist))
-        return ["".join(zeros_grid)]
