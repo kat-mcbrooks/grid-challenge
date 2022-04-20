@@ -48,3 +48,18 @@ def test_bomberPlane_2seconds_multiple_rows():
         "OOOOOOO",
         "OOOOOOO",
     ]
+
+
+def test_bomberPlane_3seconds_1_row():
+    assert bomberPlane(3, ["O..OO.O"]) == ["......."]
+
+
+def test_bomberPlane_2seconds_multiple_rows():
+    assert bomberPlane(3, ["OOO.OOO", "OO...OO", "OOO...O", "..OO.OO", "...OOOO", "...OOOO"]) == [
+        ".......",
+        "...O...",
+        "....O..",
+        ".......",
+        "OO.....",
+        "OO.....",
+    ]
