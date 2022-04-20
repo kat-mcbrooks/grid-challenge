@@ -76,3 +76,6 @@ print(f'7 seconds: {bomberPlane(7, ["O..O", ".O..", "...."])}')  # ['....', '...
 print(f'9 seconds: {bomberPlane(9, ["O..O", ".O..", "...."])}')  # ['OOOO', '.O..', '....']
 print(f'11 seconds: {bomberPlane(11, ["O..O", ".O..", "...."])}')  # ['....', '....', 'O.OO']
 print(f'13 seconds: {bomberPlane(13, ["O..O", ".O..", "...."])}')  # ['OOOO', '.O..', '....']
+
+
+print(f'5 seconds: {bomberPlane(5, ["...", ".O.", "..."])}')
