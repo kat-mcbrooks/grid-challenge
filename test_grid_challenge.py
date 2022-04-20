@@ -1,6 +1,31 @@
 from grid_challenge import bomberPlane
 
 
+# def test_bomberPlane_testcase13():
+#     assert bomberPlane(
+#         181054341,
+#         [
+#             "O..OO........O..O........OO.O.OO.OO...O.....OOO...OO.O..OOOOO...O.O..O..O.O..OOO..O..O..O....O...O....O...O..O..O....O.O.O.O.....O.....OOOO..O......O.O.....OOO....OO....OO....O.O...O..OO....OO..O...O"
+#         ],
+#     ) == [
+#         "OOOOO........OOOO........OOOOOOOOOO...O.....OOO...OOOOOOOOOOO...OOOOOOOOOOOOOOOOOOOOOOOOO....O...O....O...OOOOOOO....OOOOOOO.....O.....OOOOOOO......OOO.....OOO....OO....OO....OOO...OOOOO....OOOOO...O"
+#     ]
+
+
+def test_bomberPlane_3seconds_4by3_grid():
+    assert bomberPlane(3, ["O..O", ".O..", "...."]) == ["....", "....", "O.OO"]
+
+
+# after 4 seconds, fill the grid. bombs labelled 4 are the new bombs so bombs labelled O are the ones that will detonate after 5 seconds
+# ["4444", "4444", "O4OO"]
+def test_bomberPlane_5seconds_4by3_grid():
+    assert bomberPlane(5, ["O..O", ".O..", "...."]) == ["OOOO", ".O..", "...."]
+
+
+def test_bomberPlane_7seconds_4by3_grid():
+    assert bomberPlane(7, ["O..O", ".O..", "...."]) == ["....", "....", "O.OO"]
+
+
 def test_bomberPlane_1second_multiple_rows():
     assert bomberPlane(1, ["OOO.OOO", "OO...OO", "OOO...O", "..OO.OO", "...OOOO", "...OOOO"]) == [
         "OOO.OOO",
