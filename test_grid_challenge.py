@@ -76,19 +76,24 @@ def test_bomberPlane_3seconds_multiple_rows():
     ]
 
 
+# after 4:
 #       "OOO4OOO",
 #       "OO444OO",
 #       "OOO444O",
 #       "44OO4OO",
 #       "444OOOO",
 #       "444OOOO",
-# after 5:
-#       ".......",
-#       "...4...",
-#       "....4..",
-#       "....4..",
-#       "44.....",
-#       "44.....",
+
+
+def test_bomberPlane_5seconds_multiple_rows_B():
+    assert bomberPlane(5, [".......", "...O...", "....O..", ".......", "OO.....", "OO....."]) == [
+        ".......",
+        "...O...",
+        "....O..",
+        ".......",
+        "OO.....",
+        "OO.....",
+    ]
 
 
 def test_bomberPlane_3seconds_multiple_rows_pre_5seconds():
@@ -121,14 +126,3 @@ def test_bomberPlane_5seconds_multiple_rows_A():
 #       "4444444",
 #       "4444444",
 # after 5 secs:
-
-
-# def test_bomberPlane_5seconds_multiple_rows():
-#     assert bomberPlane(5, [".......", "...O...", "....O..", ".......", "OO.....", "OO....."]) == [
-#         "OOO.OOO",
-#         "OO...OO",
-#         "OOO...O",
-#         "..OO.OO",
-#         "...OOOO",
-#         "...OOOO",
-#     ]
