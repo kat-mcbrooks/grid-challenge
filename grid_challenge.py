@@ -10,6 +10,32 @@ def get_zeros_grid(r, c):
     return [["O" for i in range(c)] for x in itertools.repeat(None, r)]
 
 
+def detonate(
+    grid_2_seconds_previously, r, c
+):  # within this grid, the 0 will represent bombs planted 3 seconds ago i.e. those to be detonated
+    print(f"line16: {grid_2_seconds_previously}")
+    grid_after_detonation = get_zeros_grid(r, c)
+    for i in range(r):  # range is exclusive of r
+        for j in range(c):  # range is exclusive of c
+            if grid_2_seconds_previously[i][j] == "O":
+                grid_after_detonation[i][j] = "."
+                if (
+                    i < r - 1
+                ):  # check that i is not at the last row which would made i+1 index outside the grid(causing index out of range error)
+                    grid_after_detonation[i + 1][j] = "."
+                if i > 0:
+                    grid_after_detonation[i - 1][j] = "."
+                if (
+                    j < c - 1
+                ):  # check that j is not at the last column which would made j+1 index outside the grid (causing index out of range error)
+                    grid_after_detonation[i][j + 1] = "."
+                if j > 0:
+                    grid_after_detonation[i][j - 1] = "."
+            j += 1
+        i += 1
+    return grid_after_detonation
+
+
 # O represents a bomb. . represents a cell without a bomb
 def bomberPlane(n, grid):
     if n < 2:
@@ -25,56 +51,16 @@ def bomberPlane(n, grid):
         )  # map does not alter the original array, so zeros_grid is still a grid like [['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O']]
         return joinedList
 
-    grid_after_3_seconds = get_zeros_grid(r, c)
-    for i in range(r):  # range is exclusive of r
-        for j in range(c):  # range is exclusive of c
-            if grid[i][j] == "O":
-                grid_after_3_seconds[i][j] = "."
-                if (
-                    i < r - 1
-                ):  # check that i is not at the last row which would made i+1 index outside the grid(causing index out of range error)
-                    grid_after_3_seconds[i + 1][j] = "."
-                if i > 0:
-                    grid_after_3_seconds[i - 1][j] = "."
-                if (
-                    j < c - 1
-                ):  # check that j is not at the last column which would made j+1 index outside the grid (causing index out of range error)
-                    grid_after_3_seconds[i][j + 1] = "."
-                if j > 0:
-                    grid_after_3_seconds[i][j - 1] = "."
-            j += 1
-        i += 1
+    grid_after_3_seconds = detonate(grid, r, c)
 
     if n % 4 == 3:  # when n = 3, 7, 11, 15 etc
+        print(grid_after_3_seconds)
         joinedList = list(map(join, grid_after_3_seconds))
         return joinedList
 
     # if we have bypassed all the above if statements, then n % 4 = 1 i.e. n = 5, 9, 13, 17 etc.
     # to calculate the grid after 5 seconds, we look at the grid after 3 seconds: all the remaining O cells represent the bombs planted after 2 seconds so are due to detonate after 5 seconds
-    grid_after_5_seconds = get_zeros_grid(r, c)
-    print(grid_after_5_seconds)
-    for i in range(r):  # range is exclusive of r
-        # print(f"i count (row): {i}")
-        for j in range(c):  # range is exclusive of c
-            # print(f"i(row): {i}, j (column): {j}")
-            if grid_after_3_seconds[i][j] == "O":
-                grid_after_5_seconds[i][j] = "."
-                if (
-                    i < r - 1
-                ):  # check that i is not at the last row which would made i+1 index outside the grid(causing index out of range error)
-                    grid_after_5_seconds[i + 1][j] = "."
-                if i > 0:
-                    grid_after_5_seconds[i - 1][j] = "."
-                if (
-                    j < c - 1
-                ):  # check that j is not at the last column which would made j+1 index outside the grid (causing index out of range error)
-                    grid_after_5_seconds[i][j + 1] = "."
-                if j > 0:
-                    grid_after_5_seconds[i][j - 1] = "."
-            j += 1
-        i += 1
-
-    print(grid_after_5_seconds)
+    grid_after_5_seconds = detonate(grid_after_3_seconds, r, c)
     grid_after_5_seconds_joined = list(map(join, grid_after_5_seconds))
     return grid_after_5_seconds_joined
 
